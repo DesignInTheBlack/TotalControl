@@ -39,9 +39,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="0ColourPicker">
-      <HintPath>.\0ColourPicker.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -86,6 +83,7 @@
     <Compile Include="StyleHelper.cs" />
     <Compile Include="ThingIDPatch.cs" />
     <Compile Include="WeaponGenPatch.cs" />
+    <Compile Include="Window_ColorPicker.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

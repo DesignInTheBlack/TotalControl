@@ -1,5 +1,4 @@
-﻿using ColourPicker;
-using RimWorld;
+﻿using RimWorld;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -602,7 +601,7 @@ namespace FactionLoadout
                     {
                         if (isDefault)
                             item.Color = Color.white;
-                        Find.WindowStack.Add(new Dialog_ColourPicker(item.Color, c =>
+                        Find.WindowStack.Add(new Window_ColorPicker(item.Color, c =>
                         {
                             c.a = 1f;
                             item.Color = c;
@@ -974,14 +973,13 @@ namespace FactionLoadout
                 }
                 if (Widgets.ButtonInvisible(picker))
                 {
-                    Find.WindowStack.Add(new Dialog_ColourPicker(Current.ApparelColor.Value, col =>
+                    Find.WindowStack.Add(new Window_ColorPicker(Current.ApparelColor.Value, col =>
                     {
                         col.a = 1f;
                         Current.ApparelColor = col;
                     })
                     { 
                         grayOutIfOtherDialogOpen = false,
-                        autoApply = true
                     });
                 }
             }
@@ -1197,7 +1195,7 @@ namespace FactionLoadout
             {
                 if (Widgets.ButtonText(new Rect(rect.x + 3, rect.y + 3, 130, 26), "Add new..."))
                 {
-                    Find.WindowStack.Add(new Dialog_ColourPicker(new Color32(240, 216, 122, 255), selected =>
+                    Find.WindowStack.Add(new Window_ColorPicker(new Color32(240, 216, 122, 255), selected =>
                     {
                         selected.a = 1f;
                         current.Add(selected);
@@ -1228,12 +1226,11 @@ namespace FactionLoadout
                     Widgets.DrawHighlightIfMouseover(real);
                     if (Widgets.ButtonInvisible(real))
                     {
-                        Find.WindowStack.Add(new Dialog_ColourPicker(color, selected =>
+                        Find.WindowStack.Add(new Window_ColorPicker(color, selected =>
                         {
                             selected.a = 1f;
                             current[i] = selected;
-                        })
-                        { autoApply = true });
+                        }));
                     }
 
                     curr.y += 38;
