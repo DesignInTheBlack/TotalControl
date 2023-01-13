@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using ColourPicker;
 using UnityEngine;
 using Verse;
 
 namespace FactionLoadout
 {
+
     public class CustomFloatMenu : Window
     {
         public static CustomFloatMenu Open(List<MenuItemBase> items, Action<MenuItemBase> onSelected)
@@ -81,9 +81,8 @@ namespace FactionLoadout
             Widgets.DrawHighlightIfMouseover(colArea);
             if (Widgets.ButtonInvisible(colArea))
             {
-                Find.WindowStack.Add(new Dialog_ColourPicker(Tint, t => Tint = t)
+                Find.WindowStack.Add(new Window_ColorPicker(Tint, t => Tint = t)
                 {
-                    autoApply = true,
                     layer = WindowLayer.Super
                 });
             }
