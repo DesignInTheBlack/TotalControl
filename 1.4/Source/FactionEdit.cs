@@ -136,6 +136,7 @@ namespace FactionLoadout
         public DefRef<FactionDef> Faction = new DefRef<FactionDef>();
         public List<PawnKindEdit> KindEdits = new List<PawnKindEdit>();
         public ThingFilter ApparelStuffFilter;
+        public Dictionary<XenotypeDef, float> xenotypeChances = new Dictionary<XenotypeDef, float>();
         public bool Active = true;
         public bool DeletedOrClosed;
 
@@ -177,6 +178,7 @@ namespace FactionLoadout
             Scribe_Deep.Look(ref ApparelStuffFilter, "apparelStuffFilter");
             Scribe_Deep.Look(ref Faction, "faction");
             Scribe_Collections.Look(ref KindEdits, "kindEdits", LookMode.Deep);
+            Scribe_Collections.Look(ref xenotypeChances, "xenotypeChances", LookMode.Def, LookMode.Value);
         }        
 
         public void Apply(FactionDef def)
@@ -210,6 +212,15 @@ namespace FactionLoadout
                 var replaceWith = editor.Apply(kind, global);
                 if(replaceWith != kind)
                     ReplaceKind(def, kind, replaceWith);
+            }
+
+            if (ModsConfig.BiotechActive && xenotypeChances != null)
+            {
+                def.xenotypeSet.xenotypeChances.Clear();
+                foreach (var rate in xenotypeChances)
+                {
+                    def.xenotypeSet.xenotypeChances.Add(new XenotypeChance(rate.Key, rate.Value));
+                }
             }
         }
 
